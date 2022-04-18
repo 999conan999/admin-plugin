@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table,Icon,Label,Modal,Button } from 'semantic-ui-react';
 import * as lang from '../lib/constants/language';
 import { toast } from 'react-toastify';
-import {action_update_data_theme,get_contacts,delete_contact_by_id} from '../lib/constants/axios';
+import {get_contacts_plugin,delete_contact_by_id_plugin} from '../lib/constants/axios';
 import {fs_is_value_null} from '../lib/constants/fs'
 const count=25;
 class Contact extends Component {
@@ -19,17 +19,8 @@ class Contact extends Component {
     }
     //
     async componentDidMount(){
-        // if(this.props.notify>0){
-        //     let a=await action_update_data_theme({
-        //         keyz:'contact_count_plugin',
-        //         valuez:this.props.coun_contact_now
-        //     });
-        //     if(a.status){
-        //         this.props.clear_notify_contact()
-        //     }
-        // }
         //
-        let data=await get_contacts(0);
+        let data=await get_contacts_plugin(0);
         let show_see_more=true;
         if(data.length<count) show_see_more=false;
         if(data!=null||data!=undefined){
@@ -60,7 +51,7 @@ class Contact extends Component {
     //
     action_click_more=async()=>{
         let {page,data}=this.state;
-        let data_new=await get_contacts(page);
+        let data_new=await get_contacts_plugin(page);
         let show_see_more=true;
         if(data_new.length<count) show_see_more=false;
         if(data_new!=null||data_new!=undefined){
@@ -72,7 +63,7 @@ class Contact extends Component {
     //
     click_delete_contact=async()=>{
         let {id_del,data}=this.state;
-        let a=await delete_contact_by_id(id_del)
+        let a=await delete_contact_by_id_plugin(id_del)
         if(a.status){
             let index=null;
             data.forEach((e,i) => {
