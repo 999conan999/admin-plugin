@@ -620,7 +620,52 @@ code {
   padding: 5px 5px;
   cursor: pointer; 
 }
-
+.spx{
+  background-color: #faebd7;
+  padding: 10px;
+  margin: 5px;
+  position: relative;
+  border: 1px solid #b7b2b2;
+  border-radius: 5px;
+}
+.iconz{
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  font-size: 23px;
+  cursor: pointer;
+}
+.iconz:hover{
+  color: #a93636;
+}
+.bdz:hover {
+  background-color: #cdcbcb;
+  cursor: pointer;
+}
+.bdz{
+  border: 1px solid #d9c8c8;
+}
+.msn{
+  position: absolute;
+  top: -9px;
+  background-color: red;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: yellow;
+  left: -17px;
+}
+.brzs{
+  padding: 10px;
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+  background-color: burlywood;
+}
+.mediaz{
+  position: absolute;
+  top: -46px;
+  left: -10px;
+}
 .f-1{
   display: inline-block;
   width: 8.3333%;
