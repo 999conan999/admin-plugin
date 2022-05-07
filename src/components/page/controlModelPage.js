@@ -25,12 +25,28 @@ class ControlModelPage extends Component {
                 code_body:'',// meta
                 code_footer:'',// meta
                 status:'publish',//
-                code_css:''
-                // data_lien_he:[],
-                // data_redirect_code:{
-                //     time:0,
-                //     list_code:[]
-                // }
+                code_css:'',
+ 
+                data_lading_page:{
+                    price_ads:0,
+                    narbar:{
+                        url_1:'',
+                        url_2:'',
+                        url_3:'',
+                        title:'',
+                        des_show:'',
+                        des_hiden:'',
+                        dia_chi:'',
+                        cac_gio:'Mở cửa cả ngày',
+                        trang_thai_hien_tai:'Đang hoạt động',
+                        ngay_thanh_lap:'',
+                        nguoi_dai_dien:'',
+                        stk:'',
+                        google_map:"",
+                        pic_map:''
+              
+                    }
+                }
             },
             id_page:-1
         }
@@ -52,12 +68,27 @@ class ControlModelPage extends Component {
                     code_body:'',// meta
                     code_footer:'',// meta
                     status:'private',//
-                    code_css:''
-                    // data_lien_he:[],
-                    // data_redirect_code:{
-                    //     time:0,
-                    //     list_code:[]
-                    // }
+                    code_css:'',
+                    data_lading_page:{
+                        price_ads:0,
+                        narbar:{
+                            url_1:'',
+                            url_2:'',
+                            url_3:'',
+                            title:'',
+                            des_show:'',
+                            des_hiden:'',
+                            dia_chi:'',
+                            cac_gio:'Mở cửa cả ngày',
+                            trang_thai_hien_tai:'Đang hoạt động',
+                            ngay_thanh_lap:'',
+                            nguoi_dai_dien:'',
+                            stk:'',
+                            google_map:"",
+                            pic_map:''
+                  
+                        }
+                    }
                 };
                 this.setState({
                     data_source:data_source
@@ -246,11 +277,72 @@ class ControlModelPage extends Component {
                     action_change_status={this.action_change_status} 
                     delete_img_thumnail={this.delete_img_thumnail} 
                     change_code_lien_he={this.change_code_lien_he} 
-                    // action_add_code_lien_he={this.action_add_code_lien_he} 
-                    // change_data_redirect_code={this.change_data_redirect_code} 
                     click_action_yes={this.click_action_yes} 
                     click_action_no={this.click_action_no} 
                     id_page={this.props.id_page}
+                    change_navbar={(value,type)=>{
+                        let {data_source}=this.state;
+                        if(type=='price_ads'){
+                            data_source.data_lading_page.price_ads=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='url_1'){
+                            data_source.data_lading_page.narbar.url_1=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='url_2'){
+                            data_source.data_lading_page.narbar.url_2=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='url_3'){
+                            data_source.data_lading_page.narbar.url_3=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='title'){
+                            data_source.data_lading_page.narbar.title=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='des_show'){
+                            data_source.data_lading_page.narbar.des_show=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='des_hiden'){
+                            data_source.data_lading_page.narbar.des_hiden=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='dia_chi'){
+                            data_source.data_lading_page.narbar.dia_chi=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='cac_gio'){
+                            data_source.data_lading_page.narbar.cac_gio=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='trang_thai_hien_tai'){
+                            data_source.data_lading_page.narbar.trang_thai_hien_tai=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='ngay_thanh_lap'){
+                            data_source.data_lading_page.narbar.ngay_thanh_lap=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='nguoi_dai_dien'){
+                            data_source.data_lading_page.narbar.nguoi_dai_dien=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='stk'){
+                            data_source.data_lading_page.narbar.stk=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='google_map'){
+                            data_source.data_lading_page.narbar.google_map=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='pic_map'){
+                            data_source.data_lading_page.narbar.pic_map=value;
+                            this.setState({data_source:data_source})
+                        }
+                    }}
                 />
             </React.Fragment>
         )
