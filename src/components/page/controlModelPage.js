@@ -44,8 +44,8 @@ class ControlModelPage extends Component {
                         stk:'',
                         google_map:"",
                         pic_map:''
-              
-                    }
+                    },
+                    sp:[]
                 }
             },
             id_page:-1
@@ -86,8 +86,8 @@ class ControlModelPage extends Component {
                             stk:'',
                             google_map:"",
                             pic_map:''
-                  
-                        }
+                        },
+                        sp:[]
                     }
                 };
                 this.setState({
@@ -111,6 +111,7 @@ class ControlModelPage extends Component {
                         code_body:metaA.code_body==undefined?"":metaA.code_body,// meta
                         code_footer:metaA.code_footer==undefined?"":metaA.code_footer,// meta
                         status:data_server.status,
+                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[] }:metaA.data_lading_page
                         // data_lien_he:metaA.data_lien_he==undefined?[]:metaA.data_lien_he,
                         // data_redirect_code:metaA.data_redirect_code==undefined?{time:0,list_code:[]}:metaA.data_redirect_code,
                     };
@@ -343,6 +344,121 @@ class ControlModelPage extends Component {
                             this.setState({data_source:data_source})
                         }
                     }}
+                    change_sp={(value,type,i,j=0)=>{
+                        let {data_source}=this.state;
+                        if(type=='title_sp'){
+                            data_source.data_lading_page.sp[i].title=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='danh_gia'){
+                            data_source.data_lading_page.sp[i].danh_gia= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_img_sp'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].img_url= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='id'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].id= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='price_from'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].price_from= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='price_to'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].price_to= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='message'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].message= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='product_attributes'){
+                            data_source.data_lading_page.sp[i].hinh_anh[j].product_attributes= value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_hinh_anh'){
+                            data_source.data_lading_page.sp[i].hinh_anh.push({
+                                img_url:"",
+                                id:"",
+                                price_from:0,
+                                price_to:0,
+                                message:'',
+                                product_attributes:''
+
+                            });
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='delete_img_sp'){
+                            data_source.data_lading_page.sp[i].hinh_anh.splice(j,1);
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='title_thongtinsp'){
+                            data_source.data_lading_page.sp[i].thong_tin_sp[j].title=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='des_thongtinsp'){
+                            data_source.data_lading_page.sp[i].thong_tin_sp[j].des=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_thongtinsp'){
+                            data_source.data_lading_page.sp[i].thong_tin_sp.push({
+                                title:'',
+                                des:''
+                            });
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='delete_thongtinsp'){
+                            data_source.data_lading_page.sp[i].thong_tin_sp.splice(j,1);
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='title_bang_gia_sp'){
+                            data_source.data_lading_page.sp[i].bang_gia_sp[j].title=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='delete_bang_gia_sp'){
+                            data_source.data_lading_page.sp[i].bang_gia_sp.splice(j,1);
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='delete_thanh_toan'){
+                            data_source.data_lading_page.sp[i].thanh_toan.splice(j,1);
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='delete_sp'){
+                            console.log('12323')
+                            data_source.data_lading_page.sp.splice(i,1);
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='price_bang_gia_sp'){
+                            data_source.data_lading_page.sp[i].bang_gia_sp[j].price=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_bang_gia_sp'){
+                            data_source.data_lading_page.sp[i].bang_gia_sp.push({title:'',price:0});
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_thanh_toan'){
+                            data_source.data_lading_page.sp[i].thanh_toan.push('');
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='thanh_toan_sp'){
+                            data_source.data_lading_page.sp[i].thanh_toan[j]=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='add_sp'){
+                            data_source.data_lading_page.sp.push( {
+                                title:'',
+                                danh_gia:4.5,
+                                hinh_anh:[],
+                                thong_tin_sp:[],
+                                bang_gia_sp:[],
+                                thanh_toan:[]
+                            })
+                            this.setState({data_source:data_source})
+                        }
+
+                    }}
                 />
             </React.Fragment>
         )
@@ -413,6 +529,8 @@ click_action_no=()=>{
 click_action_yes=async()=>{
     // alert(this.props.id_page) // [todo=>]
     let {data_source}=this.state;
+    data_source.data_lading_page.title_page=data_source.title_post;
+    data_source.data_lading_page.des_short_page=data_source.descriptions;
     this.props.close_model_edit()
     let a=await action_create_or_edit_ladning_page({
         idN:data_source.id,
@@ -429,8 +547,7 @@ click_action_yes=async()=>{
                 template_selected:data_source.template_selected,
                 schema_seo_list:JSON.stringify(data_source.schema_seo_list),
                 schema_seo_result:fs_convert_schema_cript(data_source.schema_seo_list),
-                // data_lien_he:data_source.data_lien_he,
-                // data_redirect_code:data_source.data_redirect_code,
+                data_lading_page:data_source.data_lading_page,
                 thumnail_post:data_source.thumnail_post,
 
             }),

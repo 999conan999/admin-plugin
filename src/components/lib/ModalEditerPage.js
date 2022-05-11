@@ -136,6 +136,12 @@ return_image=(list_img,type_media)=>{
             this.props.change_navbar(list_img[0].url,'url_3');
         }
     }
+    else if(type_media=='add_img_sp'){
+        let {i,j}=this.state;
+        if(list_img.length>0){
+            this.props.change_sp(list_img[0].url,'add_img_sp',i,j);
+        }
+    }
 }
 //***************Status */
 action_change_status=(e,data)=>{
@@ -163,7 +169,323 @@ show_gia_tri=(gia_tri,i)=>{
     return rr;
 }
 //
+show_sp=(sp,activeIndex)=>{
+    let rs=[];
+    if(sp.length>0){
+        sp.forEach((e,i) => {
+            rs.push(
+            <React.Fragment key={i}>
+                <Accordion.Title
+                    active={activeIndex === 10+i}
+                    index={10+i}
+                    onClick={this.handleClick}
+                    key={i}
+                    >
+                    <Icon name='dropdown' />
+                        Mẫu số {i+1}
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 10+i}>
+                        <div className='spx'>
+                            <span className='msn'>Mẫu số {i+1}</span>
  
+                            <div>
+                                <div className='f-2'>
+                                    Tiêu đề sản phẩm:
+                                </div>
+                                <div className='f-8'>
+                                    <Input 
+                                        placeholder="Title" fluid  size='small' 
+                                        value={e.title}
+                                        onChange={(e,{value})=>this.props.change_sp(value,'title_sp',i,false)}
+                                    /> 
+                                </div>
+                            </div>
+                            <div>
+                                <div className='f-2'>
+                                    Đánh giá:
+                                </div>
+                                <div className='f-2'>
+                                    <Input 
+                                        placeholder={4.5} fluid  size='small' type='number'
+                                        value={e.danh_gia}
+                                        onChange={(e,{value})=>this.props.change_sp(value,'danh_gia',i,false)}
+                                    /> 
+                                </div>
+                            </div>
+
+                            <div style={{backgroundColor:"darkgray",padding:'5px',marginBottom:'10px'}}>
+                                <div className='f-12' style={{marginTop:'10px'}}>
+                                    Thêm hình ảnh cho sản phẩm:
+                                </div>
+                                <i className="fa-solid fa-trash-can iconz"   onClick={()=>this.props.change_sp(false,'delete_sp',i,false)} 
+                                ></i><div  >
+                                {
+                                        e.hinh_anh.map((f,j)=>{
+                                            return(
+                                                <React.Fragment  key={j}>
+
+                                                    <div  key={j} className='f-3 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
+                                                        <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}} 
+                                                        onClick={()=>this.props.change_sp(false,'delete_img_sp',i,j)}
+                                                        ></i>
+                                                        <div className='brzs'>
+                                                            <div style={{position:"relative"}}>
+                                                                <div className='mediaz'>
+                                                                    <Button basic color='blue' size='small' className='btn-mgb'
+                                                                    onClick={()=>this.setState({open:true,type_media:'add_img_sp',i:i,j:j,multi_select:false})}
+                                                                    ><i className="fas fa-photo-video vv"></i>Add Media</Button>
+                                                                </div>
+                                                                <div className='f-12'>
+                                                                    <img src={f.img_url} width={"100px"} height={"100px"} style={{margin:"auto",display:"block"}}/>
+                                                                </div>
+                                                            </div>
+                
+                                                            <div>
+                                                                <div className='f-5'>Mã sản phẩm:</div>
+                                                                    <div className='f-7'>
+                                                                        <Input 
+                                                                            placeholder='HG01' fluid  size='small' 
+                                                                            value={f.id}
+                                                                            onChange={(e,{value})=>this.props.change_sp(value,'id',i,j)}
+                                                                        /> 
+                                                                    </div>
+                                                            </div>
+                
+                                                            <div>
+                                                                <div className='f-5'>Giá nhỏ nhất:</div>
+                                                                    <div className='f-7'>
+                                                                        <Input 
+                                                                            fluid  size='small' type='number'
+                                                                            value={f.price_from}
+                                                                            onChange={(e,{value})=>this.props.change_sp(value,'price_from',i,j)}
+                                                                        /> 
+                                                                    </div>
+                                                            </div>
+                
+                                                            <div>
+                                                                <div className='f-5'>Giá lớn nhất:</div>
+                                                                    <div className='f-7'>
+                                                                        <Input 
+                                                                            fluid  size='small' type='number'
+                                                                            value={f.price_to}
+                                                                            onChange={(e,{value})=>this.props.change_sp(value,'price_to',i,j)}
+                                                                        /> 
+                                                                    </div>
+                                                            </div>
+                
+                                                            <div>
+                                                                <div className='f-5'>Ghi chú:</div>
+                                                                    <div className='f-7'>
+                                                                        <Input 
+                                                                            fluid  size='small' 
+                                                                            value={f.message}
+                                                                            onChange={(e,{value})=>this.props.change_sp(value,'message',i,j)}
+                                                                        /> 
+                                                                    </div>
+                                                            </div>
+                
+                                                            <div>
+                                                                <div className='f-12'>Thuộc tính sản phẩm:</div>
+                                                                    <div className='f-12'>
+                                                                        <Input 
+                                                                            placeholder='Giường sắt màu xanh dương' fluid  size='small' 
+                                                                            value={f.product_attributes}
+                                                                            onChange={(e,{value})=>this.props.change_sp(value,'product_attributes',i,j)}
+                                                                        /> 
+                                                                    </div>
+                                                            </div>
+                
+                
+                
+                                                        </div>
+                                                    </div>
+                
+                                                </React.Fragment>
+                                            )
+                                        })
+                                }
+                                    <div>
+                                        <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={()=>this.props.change_sp(false,'add_hinh_anh',i,false)}>
+                                            <i className="fa-solid fa-plus"></i> Thêm hình
+                                        </Button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
+                                <div className='f-12' style={{marginTop:'10px'}}>
+                                    Thông tin sản phẩm:
+                                </div>
+                                {/* <i className="fa-solid fa-trash-can iconz"></i> */}
+
+                                <div  >
+                                    {
+                                        e.thong_tin_sp.map((f,j)=>{
+                                            return(
+                                            <React.Fragment  key={j}>
+                                                <div  key={j} className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
+                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}
+                                                        onClick={()=>this.props.change_sp(false,'delete_thongtinsp',i,j)}
+                                                    ></i>
+                                                    <div className='brzs'>
+                                                        <div>
+                                                            <div className='f-1'>
+                                                                Tiêu đề :
+                                                            </div>
+                                                            <div className='f-11'>
+                                                                <Input 
+                                                                    placeholder={'Chất liệu của sản phẩm'} fluid  size='small' 
+                                                                    value={f.title}
+                                                                    onChange={(e,{value})=>this.props.change_sp(value,'title_thongtinsp',i,j)}
+                                                                /> 
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div className='f-1'>
+                                                                Mô tả :
+                                                            </div>
+                                                            <div className='f-11'>
+                                                                <Input 
+                                                                    placeholder={'Chất liệu làm bằng sắt 1ly4'} fluid  size='small' 
+                                                                    value={f.des}
+                                                                    onChange={(e,{value})=>this.props.change_sp(value,'des_thongtinsp',i,j)}
+                                                                /> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </React.Fragment>
+                                            )
+                                        })
+                                    }
+
+                                    <div>
+                                        <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={()=>this.props.change_sp(false,'add_thongtinsp',i,false)}>
+                                            <i className="fa-solid fa-plus"></i> Thêm thông tin
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
+                                <div className='f-12' style={{marginTop:'10px'}}>
+                                    Bảng giá :
+                                </div>
+                                {/* <i className="fa-solid fa-trash-can iconz"></i> */}
+
+                                <div  >
+                                    {
+                                        e.bang_gia_sp.map((f,j)=>{
+                                            return(
+                                                <div  key={j} className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
+                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}} 
+                                                        onClick={()=>this.props.change_sp(false,'delete_bang_gia_sp',i,j)}
+                                                    ></i>
+                                                    <div className='brzs'>
+                                                        <div>
+                                                            <div className='f-1'>
+                                                                Thuộc tính :
+                                                            </div>
+                                                            <div className='f-4'>
+                                                                <Input 
+                                                                    placeholder={'1mx2m'} fluid  size='small' 
+                                                                    value={f.title}
+                                                                    onChange={(e,{value})=>this.props.change_sp(value,'title_bang_gia_sp',i,j)}
+                                                                /> 
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <div className='f-1'>
+                                                                Giá :
+                                                            </div>
+                                                            <div className='f-4'>
+                                                                <Input 
+                                                                    placeholder={'1200000'} fluid  size='small' 
+                                                                    type='number'
+                                                                    value={f.price}
+                                                                    onChange={(e,{value})=>this.props.change_sp(value,'price_bang_gia_sp',i,j)}
+                                                                /> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+
+                                    <div>
+                                        <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' 
+                                            onClick={()=>this.props.change_sp(false,'add_bang_gia_sp',i,false)}
+                                        >
+                                            <i className="fa-solid fa-plus"></i> Thêm giá
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
+                                <div className='f-12' style={{marginTop:'10px'}}>
+                                    Thông tin thêm (thanh toán) :
+                                </div>
+                                {/* <i className="fa-solid fa-trash-can iconz"></i> */}
+
+                                <div  >
+                                {
+                                        e.thanh_toan.map((f,j)=>{
+                                            return( 
+                                                <div key={j} className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
+                                                <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}
+                                                    onClick={()=>this.props.change_sp(false,'delete_thanh_toan',i,j)}
+                                                ></i>
+                                                <div className='brzs'>
+                                                    <div>
+                                                        <div className='f-1'>
+                                                            Mô tả {j+1} :
+                                                        </div>
+                                                        <div className='f-11'>
+                                                            <Input 
+                                                                placeholder={'Thanh toán khi nhận hàng'} fluid  size='small' 
+                                                                value={f}
+                                                                onChange={(e,{value})=>this.props.change_sp(value,'thanh_toan_sp',i,j)}
+                                                            /> 
+                                                        </div>
+                                                    </div>
+        
+                                                </div>
+                                            </div>
+                                            )
+                                        })
+                                    }
+
+
+                                    <div>
+                                        <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className=''
+                                         onClick={()=>this.props.change_sp(false,'add_thanh_toan',i,false)}>
+                                            <i className="fa-solid fa-plus"></i> Thêm mô tả
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div> 
+                </Accordion.Content>
+
+            </React.Fragment>
+            )
+        });
+
+    }
+    return rs;
+}
+//
     render() {
         const { activeIndex } =  this.state;
         const {data_source,id_page,template_list}=this.props;
@@ -375,308 +697,13 @@ show_gia_tri=(gia_tri,i)=>{
                             <Header as='h4'>Sản phẩm:</Header>
                             {/*  */}
                             <Accordion styled style={{width:"100%"}}>
-                                <Accordion.Title
-                                active={activeIndex === 10+1}
-                                index={10+1}
-                                onClick={this.handleClick}
-                                >
-                                <Icon name='dropdown' />
-                                    Mẫu số 1
-                                </Accordion.Title>
-                                <Accordion.Content active={activeIndex === 10+1}>
-                                    <div className='spx'>
-                                        <span className='msn'>Mẫu số 1</span>
-                                        <i className="fa-solid fa-trash-can iconz"></i>
-                                        <div>
-                                            <div className='f-2'>
-                                                Tiêu đề sản phẩm:
-                                            </div>
-                                            <div className='f-8'>
-                                                <Input 
-                                                    placeholder="Title" fluid  size='small' 
-                                                    // value={data_source.title_post}
-                                                    // onChange={this.action_change_title}
-                                                /> 
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className='f-2'>
-                                                Đánh giá:
-                                            </div>
-                                            <div className='f-2'>
-                                                <Input 
-                                                    placeholder={4.5} fluid  size='small' type='number'
-                                                    // value={data_source.title_post}
-                                                    // onChange={this.action_change_title}
-                                                /> 
-                                            </div>
-                                        </div>
-
-                                        <div style={{backgroundColor:"darkgray",padding:'5px',marginBottom:'10px'}}>
-                                            <div className='f-12' style={{marginTop:'10px'}}>
-                                                Thêm hình ảnh cho sản phẩm:
-                                            </div>
-                                            <i className="fa-solid fa-trash-can iconz"></i>
-
-                                            <div  >
-        
-                                                <div className='f-3 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
-                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}></i>
-                                                    <div className='brzs'>
-                                                        <div style={{position:"relative"}}>
-                                                            <div className='mediaz'>
-                                                                <Button basic color='blue' size='small' className='btn-mgb'
-                                                                onClick={()=>this.setState({open:true,type_media:'add_img_thumnail',multi_select:false})}
-                                                                ><i className="fas fa-photo-video vv"></i>Add Media</Button>
-                                                            </div>
-                                                            <div className='f-12'>
-                                                                <img src="https://anbinhnew.com/wp-content/uploads/2021/01/Ban-hoc-doi-bang-nhua-cho-be-trai-va-gai-1.jpg" width={"50%"} style={{margin:"auto",display:"block"}}/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className='f-5'>Mã sản phẩm:</div>
-                                                                <div className='f-7'>
-                                                                    <Input 
-                                                                        placeholder='HG01' fluid  size='small' 
-                                                                        // value={data_source.title_post}
-                                                                        // onChange={this.action_change_title}
-                                                                    /> 
-                                                                </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className='f-5'>Giá nhỏ nhất:</div>
-                                                                <div className='f-7'>
-                                                                    <Input 
-                                                                        fluid  size='small' type='number'
-                                                                        // value={data_source.title_post}
-                                                                        // onChange={this.action_change_title}
-                                                                    /> 
-                                                                </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className='f-5'>Giá lớn nhất:</div>
-                                                                <div className='f-7'>
-                                                                    <Input 
-                                                                        fluid  size='small' type='number'
-                                                                        // value={data_source.title_post}
-                                                                        // onChange={this.action_change_title}
-                                                                    /> 
-                                                                </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className='f-5'>Ghi chú:</div>
-                                                                <div className='f-7'>
-                                                                    <Input 
-                                                                        fluid  size='small' 
-                                                                        // value={data_source.title_post}
-                                                                        // onChange={this.action_change_title}
-                                                                    /> 
-                                                                </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <div className='f-12'>Thuộc tính sản phẩm:</div>
-                                                                <div className='f-12'>
-                                                                    <Input 
-                                                                        placeholder='Giường sắt màu xanh dương' fluid  size='small' 
-                                                                        // value={data_source.title_post}
-                                                                        // onChange={this.action_change_title}
-                                                                    /> 
-                                                                </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-
-
-                                                <div>
-                                                    <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={this.props.action_add_schema}>
-                                                        <i className="fa-solid fa-plus"></i> Thêm hình
-                                                    </Button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
-                                            <div className='f-12' style={{marginTop:'10px'}}>
-                                                Thông tin sản phẩm:
-                                            </div>
-                                            <i className="fa-solid fa-trash-can iconz"></i>
-
-                                            <div  >
-
-                                                <div className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
-                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}></i>
-                                                    <div className='brzs'>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Tiêu đề :
-                                                            </div>
-                                                            <div className='f-11'>
-                                                                <Input 
-                                                                    placeholder={'Chất liệu của sản phẩm'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Mô tả :
-                                                            </div>
-                                                            <div className='f-11'>
-                                                                <Input 
-                                                                    placeholder={'Chất liệu làm bằng sắt 1ly4'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
-                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}></i>
-                                                    <div className='brzs'>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Tiêu đề :
-                                                            </div>
-                                                            <div className='f-11'>
-                                                                <Input 
-                                                                    placeholder={'Chất liệu của sản phẩm'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Mô tả :
-                                                            </div>
-                                                            <div className='f-11'>
-                                                                <Input 
-                                                                    placeholder={'Chất liệu làm bằng sắt 1ly4'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={this.props.action_add_schema}>
-                                                        <i className="fa-solid fa-plus"></i> Thêm thông tin
-                                                    </Button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
-                                            <div className='f-12' style={{marginTop:'10px'}}>
-                                                Bảng giá :
-                                            </div>
-                                            <i className="fa-solid fa-trash-can iconz"></i>
-
-                                            <div  >
-
-                                                <div className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
-                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}></i>
-                                                    <div className='brzs'>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Thuộc tính :
-                                                            </div>
-                                                            <div className='f-4'>
-                                                                <Input 
-                                                                    placeholder={'1mx2m'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Giá :
-                                                            </div>
-                                                            <div className='f-4'>
-                                                                <Input 
-                                                                    placeholder={'1200000'} fluid  size='small' 
-                                                                    type='number'
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={this.props.action_add_schema}>
-                                                        <i className="fa-solid fa-plus"></i> Thêm giá
-                                                    </Button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div style={{backgroundColor:"darkgray",padding:'5px',position:'relative',marginBottom:'10px'}}>
-                                            <div className='f-12' style={{marginTop:'10px'}}>
-                                                Thông tin thêm (thanh toán) :
-                                            </div>
-                                            <i className="fa-solid fa-trash-can iconz"></i>
-
-                                            <div  >
-
-                                                <div className='f-12 bdz' style={{padding:'39px 5px 5px 5px',position:"relative"}}>
-                                                    <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}}></i>
-                                                    <div className='brzs'>
-                                                        <div>
-                                                            <div className='f-1'>
-                                                                Mô tả 1 :
-                                                            </div>
-                                                            <div className='f-11'>
-                                                                <Input 
-                                                                    placeholder={'Thanh toán khi nhận hàng'} fluid  size='small' 
-                                                                    // value={data_source.title_post}
-                                                                    // onChange={this.action_change_title}
-                                                                /> 
-                                                            </div>
-                                                        </div>
-        
-                                                    </div>
-                                                </div>
-
-                                                <div>
-                                                    <Button  color='vk' style={{margin:"0px 15px 15px 15px"}} className='' onClick={this.props.action_add_schema}>
-                                                        <i className="fa-solid fa-plus"></i> Thêm giá
-                                                    </Button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div> 
-                                </Accordion.Content>
-
+                                {this.show_sp(data_source.data_lading_page.sp,activeIndex)}
                             </Accordion>
                             {/*  */}
                             <div>
-                                <Button style={{margin:"5px"}} className='add-da' onClick={this.props.action_add_schema}>
-                                    <i className="fa-solid fa-plus"></i> Thêm sản phẩm
+                                <Button style={{margin:"5px"}} className='add-da' onClick={()=>this.props.change_sp(false,'add_sp',false,false)}>
+                                    <i className="fa-solid fa-plus" 
+                                    ></i> Thêm sản phẩm
                                 </Button>
                             </div>
                         </Segment>
