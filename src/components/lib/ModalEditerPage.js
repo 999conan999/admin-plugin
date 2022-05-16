@@ -513,7 +513,7 @@ show_sp=(sp,activeIndex)=>{
                             />
                         </Segment>
  
-                        <Segment raised style={{backgroundColor:"rgb(208 217 134)"}}>
+                        <Segment raised style={{backgroundColor:"rgb(164 195 165)"}}>
                             <Header as='h4'>Narbar:</Header>
                             <div>
                                 <div className='f-2'>
@@ -706,6 +706,15 @@ show_sp=(sp,activeIndex)=>{
                                     ></i> Thêm sản phẩm
                                 </Button>
                             </div>
+                        </Segment>
+                        <Segment raised style={{backgroundColor:"rgb(229 149 176)"}}>
+                            <Header as='h4'>Server render:</Header>
+                            <Form>
+                                <TextArea placeholder='Code here.' 
+                                    value={data_source.server_render}
+                                    onChange={(e,{value})=>this.props.change_sp(value,'server_render',false,false)}
+                                />
+                            </Form>
                         </Segment>
                         <Segment raised className={data_source.content_post!=''?'okok':''}>
                             <Header as='h4'>{lang.CONTENT_POST}:</Header>

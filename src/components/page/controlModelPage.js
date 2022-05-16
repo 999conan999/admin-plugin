@@ -26,7 +26,7 @@ class ControlModelPage extends Component {
                 code_footer:'',// meta
                 status:'publish',//
                 code_css:'',
- 
+                server_render:'',
                 data_lading_page:{
                     price_ads:0,
                     narbar:{
@@ -69,6 +69,7 @@ class ControlModelPage extends Component {
                     code_footer:'',// meta
                     status:'private',//
                     code_css:'',
+                    server_render:'',
                     data_lading_page:{
                         price_ads:0,
                         narbar:{
@@ -444,6 +445,10 @@ class ControlModelPage extends Component {
                         }
                         else if(type=='thanh_toan_sp'){
                             data_source.data_lading_page.sp[i].thanh_toan[j]=value;
+                            this.setState({data_source:data_source})
+                        }
+                        else if(type=='server_render'){
+                            data_source.server_render=value;
                             this.setState({data_source:data_source})
                         }
                         else if(type=='add_sp'){
