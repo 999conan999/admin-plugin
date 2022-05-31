@@ -574,7 +574,7 @@ show_sp=(sp,activeIndex)=>{
                                     4.Mô tả ngắn về thương hiệu :
                                 </div>
                                 <div>
-                                    <div className='f-2'>Mô tả ngắn hiển thị:</div>
+                                    <div className='f-2'>+ Mô tả hiển thị:</div>
                                     <div className='f-8'>
                                         <Form>
                                             <TextArea placeholder='Cửa hàng cung cấp đồ nội thất Hồ Chí Minh...' 
@@ -585,7 +585,7 @@ show_sp=(sp,activeIndex)=>{
                                     </div>
                                 </div>
                                 <div>
-                                    <div className='f-2'>Mô tả ẩn:</div>
+                                    <div className='f-2'> + Mô tả ẩn:</div>
                                     <div className='f-8'>
                                         <Form>
                                             <TextArea placeholder='Mô tả dài hơn ẩn' 

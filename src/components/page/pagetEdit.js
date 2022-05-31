@@ -168,7 +168,7 @@ class PostEdit extends Component {
                     <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell >{lang.TITLE}</Table.HeaderCell>
-                        <Table.HeaderCell width="1">{lang.STATUS}</Table.HeaderCell>
+                        <Table.HeaderCell width="2">{lang.STATUS}</Table.HeaderCell>
                         <Table.HeaderCell width="3">{lang.EDIT_DEL}</Table.HeaderCell>
                     </Table.Row>
                     </Table.Header>

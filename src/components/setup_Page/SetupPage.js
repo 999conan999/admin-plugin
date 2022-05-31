@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Segment,Header,Button,Message,Form,TextArea,Input,Dropdown } from 'semantic-ui-react';
-import Sortable from '../lib/sortable';
+// import Sortable from '../lib/sortable';
 import FileMedia from '../lib/fileMedia';
 import * as lang from '../lib/constants/language';
 import { toast } from 'react-toastify';
@@ -39,11 +39,9 @@ class SetupPage extends Component {
                 },
                 footer_setup:{
                     url_fb:'',
-                    title_fb:'',
-                    url_youtube:'',
-                    title_youtube:'',
+                    url_zalo:'',
                     design_by:'',
-                    email:''
+                    hotline:''
                 },
                 code_header:'',
                 code_body:'',
@@ -51,7 +49,8 @@ class SetupPage extends Component {
                 css_code:'',
                 website_name:'',
                 data_plugin:{
-                    API_telegram:''
+                    API_telegram:'',
+                    header_title:''
                 }
                 // add_code_posts:{
                 //     code_header:'',
@@ -173,107 +172,107 @@ class SetupPage extends Component {
         })
     }
     // change cateogry
-    onChange_category=(e, { value })=>{
-        let {category_list}=this.state;
-        let js=null;
-        category_list.forEach((e,i) => {
-            if(e.value==value){
-                js=i;
-            }
-        });
-        if(js!=null){
-            this.setState({
-                value_category:category_list[js]
-            })
-        }
+    // onChange_category=(e, { value })=>{
+    //     let {category_list}=this.state;
+    //     let js=null;
+    //     category_list.forEach((e,i) => {
+    //         if(e.value==value){
+    //             js=i;
+    //         }
+    //     });
+    //     if(js!=null){
+    //         this.setState({
+    //             value_category:category_list[js]
+    //         })
+    //     }
 
-    }
+    // }
     // change page
-    onChange_page=(e, { value })=>{
-        let {page_list}=this.state;
-        let js=null;
-        page_list.forEach((e,i) => {
-            if(e.value==value){
-                js=i;
-            }
-        });
-        if(js!=null){
-            this.setState({
-                value_page:page_list[js]
-            })
-        }
+    // onChange_page=(e, { value })=>{
+    //     let {page_list}=this.state;
+    //     let js=null;
+    //     page_list.forEach((e,i) => {
+    //         if(e.value==value){
+    //             js=i;
+    //         }
+    //     });
+    //     if(js!=null){
+    //         this.setState({
+    //             value_page:page_list[js]
+    //         })
+    //     }
 
-    }
+    // }
     // add category
-    action_add_Cateogry=()=>{
-        let {value_category,keyz}=this.state;
-        if(value_category.value!=''){
-            // treeData.push(value_category);
-            this.setState({
-                keyz:keyz+1,
-                value_update:value_category,
-                value_category:{
-                    value:""
-                },
-            })
-        }else{
-            alert(lang.ALERT_1)
-        }
-    }
+    // action_add_Cateogry=()=>{
+    //     let {value_category,keyz}=this.state;
+    //     if(value_category.value!=''){
+    //         // treeData.push(value_category);
+    //         this.setState({
+    //             keyz:keyz+1,
+    //             value_update:value_category,
+    //             value_category:{
+    //                 value:""
+    //             },
+    //         })
+    //     }else{
+    //         alert(lang.ALERT_1)
+    //     }
+    // }
     // add page
-    action_add_page=()=>{
-        let {value_page,keyz}=this.state;
-        if(value_page.value!=''){
-            // treeData.push(value_category);
-            this.setState({
-                keyz:keyz+1,
-                value_update:value_page,
-                value_page:{
-                    value:""
-                },
-            })
-        }else{
-            alert(lang.ALERT_2)
-        }
-    }
+    // action_add_page=()=>{
+    //     let {value_page,keyz}=this.state;
+    //     if(value_page.value!=''){
+    //         // treeData.push(value_category);
+    //         this.setState({
+    //             keyz:keyz+1,
+    //             value_update:value_page,
+    //             value_page:{
+    //                 value:""
+    //             },
+    //         })
+    //     }else{
+    //         alert(lang.ALERT_2)
+    //     }
+    // }
     // change text
-    action_change_text=(e,{value})=>{
-        let {value_custom_text}=this.state;
-        value_custom_text.text=value;
-        this.setState({
-            value_custom_text:value_custom_text
-        })
-    }
+    // action_change_text=(e,{value})=>{
+    //     let {value_custom_text}=this.state;
+    //     value_custom_text.text=value;
+    //     this.setState({
+    //         value_custom_text:value_custom_text
+    //     })
+    // }
     // change url
-    action_change_url=(e,{value})=>{
-        let {value_custom_text}=this.state;
-        value_custom_text.url=value;
-        this.setState({
-            value_custom_text:value_custom_text
-        })
-    }
+    // action_change_url=(e,{value})=>{
+    //     let {value_custom_text}=this.state;
+    //     value_custom_text.url=value;
+    //     this.setState({
+    //         value_custom_text:value_custom_text
+    //     })
+    // }
     // add custom text url
-    action_add_text=()=>{
-        let {value_custom_text,keyz}=this.state;
-        if(value_custom_text.text!=''&&value_custom_text.url!=""){
-            this.setState({
-                keyz:keyz+1,
-                value_update:{
-                    title:value_custom_text.text,
-                    key:value_custom_text.text,
-                    text:value_custom_text.text,
-                    value:value_custom_text.text,
-                    url:value_custom_text.url
-                },
-                value_custom_text:{
-                    text:'',
-                    url:''
-                },
-            })
-        }else{
-            alert(lang.ALERT_3)
-        }
-    }
+    // action_add_text=()=>{
+    //     let {value_custom_text,keyz}=this.state;
+    //     if(value_custom_text.text!=''&&value_custom_text.url!=""){
+    //         this.setState({
+    //             keyz:keyz+1,
+    //             value_update:{
+    //                 title:value_custom_text.text,
+    //                 key:value_custom_text.text,
+    //                 text:value_custom_text.text,
+    //                 value:value_custom_text.text,
+    //                 url:value_custom_text.url
+    //             },
+    //             value_custom_text:{
+    //                 text:'',
+    //                 url:''
+    //             },
+    //         })
+    //     }else{
+    //         alert(lang.ALERT_3)
+    //     }
+    // }
     action_change_code_source=(e,{value})=>{
         let {data}=this.state;
         data.code_contacts.code_source=value;
@@ -351,6 +350,26 @@ class SetupPage extends Component {
                                     onChange={(e,{value})=>{
                                         let {data}=this.state;
                                         data.website_name=value;
+                                        this.setState({data:data})
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </Segment>
+                <Segment raised className='okok'>
+                    <div className='wrap-bb' >
+                        <span className='oii'>Khẩu hiệu của website :</span>
+                        <div className='inputK'>
+                            <div >
+                                <Input 
+                                    size='small' 
+                                    fluid
+                                    placeholder='Chào mừng bạn đến với Nội thất An Bình'
+                                    value={data.data_plugin.header_title}
+                                    onChange={(e,{value})=>{
+                                        let {data}=this.state;
+                                        data.data_plugin.header_title=value;
                                         this.setState({data:data})
                                     }}
                                 />
@@ -454,7 +473,7 @@ class SetupPage extends Component {
                     </div>
                 </Segment>
 
-               <Segment raised className='okok'>
+               {/* <Segment raised className='okok'>
                     <Header as='h4' className='clh'>*{lang.MENU_WEB} </Header>
                     <p>
                          {lang.NOTIFY_MENU_WEB}<a href={lang.NOTIFY_MENU_WEB_HDSD_URL}  target="_blank">{lang.NOTIFY_WEB_HDSD_TITLE}</a>
@@ -541,7 +560,8 @@ class SetupPage extends Component {
                             </Segment>
                         </Segment.Group>
 
-                </Segment>
+                </Segment> */}
+
                 <Segment raised className='okok'>
                     <Header as='h4' className='clh'>*{lang.FOOTER_PAGE_SETUP}</Header>
                     <div className='wrap-bb' >
@@ -560,7 +580,7 @@ class SetupPage extends Component {
                                     }}
                                 />
                             </div>
-                            <div className='jhv'>
+                            {/* <div className='jhv'>
                                 <span>Title:</span><br/>
                                 <Input 
                                     size='small' 
@@ -572,45 +592,64 @@ class SetupPage extends Component {
                                         this.setState({data:data})
                                     }}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className='wrap-bb' >
-                        <span className='oii'>Youtube setup :</span>
+                        <span className='oii'>Zalo setup:</span>
                         <div className='inputK'>
                             <div className='jhg'>
                                 <span>URL:</span><br/>
                                 <Input 
                                     size='small' 
                                     fluid 
-                                    value={data.footer_setup.url_youtube}
+                                    value={data.footer_setup.url_zalo}
                                     onChange={(e,{value})=>{
                                         let {data}=this.state;
-                                        data.footer_setup.url_youtube=value;
+                                        data.footer_setup.url_zalo=value;
                                         this.setState({data:data})
                                     }}
                                 />
                             </div>
-                            <div className='jhv'>
+                            {/* <div className='jhv'>
                                 <span>Title:</span><br/>
                                 <Input 
                                     size='small' 
                                     fluid 
-                                    value={data.footer_setup.title_youtube}
+                                    value={data.footer_setup.title_zalo}
                                     onChange={(e,{value})=>{
                                         let {data}=this.state;
-                                        data.footer_setup.title_youtube=value;
+                                        data.footer_setup.title_zalo=value;
+                                        this.setState({data:data})
+                                    }}
+                                />
+                            </div> */}
+                        </div>
+                    </div>
+                    <div className='wrap-bb' >
+                        <span className='oii'>Hotline :</span>
+                        <div className='inputK'>
+                            <div className='jhg'>
+                                <span>by:</span><br/>
+                                <Input 
+                                    size='small' 
+                                    fluid 
+                                    value={data.footer_setup.hotline}
+                                    onChange={(e,{value})=>{
+                                        let {data}=this.state;
+                                        data.footer_setup.hotline=value;
                                         this.setState({data:data})
                                     }}
                                 />
                             </div>
+ 
                         </div>
                     </div>
                     <div className='wrap-bb' >
                         <span className='oii'>Design by :</span>
                         <div className='inputK'>
                             <div className='jhg'>
-                                <span>Name:</span><br/>
+                                <span>by:</span><br/>
                                 <Input 
                                     size='small' 
                                     fluid 
@@ -622,19 +661,7 @@ class SetupPage extends Component {
                                     }}
                                 />
                             </div>
-                            <div className='jhv'>
-                                <span>email:</span><br/>
-                                <Input 
-                                    size='small' 
-                                    fluid 
-                                    value={data.footer_setup.email}
-                                    onChange={(e,{value})=>{
-                                        let {data}=this.state;
-                                        data.footer_setup.email=value;
-                                        this.setState({data:data})
-                                    }}
-                                />
-                            </div>
+ 
                         </div>
                     </div>
                 </Segment>

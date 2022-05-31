@@ -726,3 +726,13 @@ code {
   width: 100%;
   overflow: hidden;
 }
+.xoa:hover{
+  color:red;
+}
+.titkx:hover{
+  color:blue;
+  text-decoration: underline;
+}
+.titkx{
+  color:#333;
+}

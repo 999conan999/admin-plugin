@@ -29,6 +29,8 @@ class ControlModelPage extends Component {
                 server_render:'',
                 data_lading_page:{
                     price_ads:0,
+                    title_page:'',
+                    des_short_page:'',
                     narbar:{
                         url_1:'',
                         url_2:'',
@@ -72,6 +74,8 @@ class ControlModelPage extends Component {
                     server_render:'',
                     data_lading_page:{
                         price_ads:0,
+                        title_page:'',
+                        des_short_page:'',
                         narbar:{
                             url_1:'',
                             url_2:'',
@@ -112,7 +116,8 @@ class ControlModelPage extends Component {
                         code_body:metaA.code_body==undefined?"":metaA.code_body,// meta
                         code_footer:metaA.code_footer==undefined?"":metaA.code_footer,// meta
                         status:data_server.status,
-                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[] }:metaA.data_lading_page
+                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[] }:metaA.data_lading_page,
+                        server_render:metaA.server_render,
                         // data_lien_he:metaA.data_lien_he==undefined?[]:metaA.data_lien_he,
                         // data_redirect_code:metaA.data_redirect_code==undefined?{time:0,list_code:[]}:metaA.data_redirect_code,
                     };
@@ -554,6 +559,7 @@ click_action_yes=async()=>{
                 schema_seo_result:fs_convert_schema_cript(data_source.schema_seo_list),
                 data_lading_page:data_source.data_lading_page,
                 thumnail_post:data_source.thumnail_post,
+                server_render:data_source.server_render
 
             }),
             // bien can tao meta rieng o day

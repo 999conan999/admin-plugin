@@ -84,31 +84,7 @@ const { toast } =require ('react-toastify');
 //             data_send.append(key,data[key]);
 //         }
 //     });
-//     //
-//     let response= axios.post(url_create_edit_post, 
-//         data_send
-//     )
-//     .then(function (response) {
-//         // console.log("🚀 ~ file: axios.js ~ line 89 ~ response", response.data)
-//         if(response.data.status=="ok"){
-//             return {
-//                 status:true,
-//                 id:response.data.id,
-//                 category:response.data.category,
-//                 url:response.data.url,
-//                 author_name:response.data.author_name,
-//             }
-//         }else{
-//             return {
-//                 status:false,
-//             }
-//         }
-//     })
-//     .catch(function (error) {
-//         console.log("🚀 ~ file: axios.js ~ line 97 ~ action_create_or_edit_post ~ error", error)
-//         return false
-//     })
-//     return response;
+ 
 // }
 // const url_remove_post='http://localhost/test/wp-content/themes/danhdev_1/templates/ajax/ipa_nimda/stsop/eteled.php';
 // export async function action_remove_post_by_id(id){
