@@ -28,11 +28,11 @@ class SetupPage extends Component {
                 url:''
             },
             data:{
-                icon_url_32:'',
+                // icon_url_32:'',
                 icon_url_192:'',
-                icon_url_180:'',
+                // icon_url_180:'',
                 logo_url_1:'',
-                logo_url_2:'',
+                // logo_url_2:'',
                 code_contacts:{
                     code_source:'',
                     code_value:[],
@@ -384,7 +384,7 @@ class SetupPage extends Component {
                     <p>
                         {lang.NOTIFY_ICON_WEB} <a href={lang.NOTIFY_ICON_WEB_HDSD_URL}  target="_blank">{lang.NOTIFY_WEB_HDSD_TITLE}</a>
                     </p>
-                    <div className='ghhg'>
+                    {/* <div className='ghhg'>
                         <Button basic color='blue' size='small' className='btn-mgb'
                             onClick={()=>this.setState({open:true,type_media:'addIcon_32'})}
                         ><i className="fas fa-photo-video vv"></i>Add Media</Button>
@@ -393,7 +393,7 @@ class SetupPage extends Component {
                             <i className="fa-solid fa-x xxz zzx" onClick={this.action_delete_img_icon}></i>
                         </div></div>}
                         <p>32x32</p>
-                    </div>
+                    </div> */}
                     <div className='ghhg'>
                         <Button basic color='blue' size='small' className='btn-mgb'
                             onClick={()=>this.setState({open:true,type_media:'addIcon_192'})}
@@ -408,7 +408,7 @@ class SetupPage extends Component {
                         </div></div>}
                         <p>192x192</p>
                     </div>
-                    <div className='ghhg'>
+                    {/* <div className='ghhg'>
                         <Button basic color='blue' size='small' className='btn-mgb'
                             onClick={()=>this.setState({open:true,type_media:'addIcon_180'})}
                         ><i className="fas fa-photo-video vv"></i>Add Media</Button>
@@ -421,7 +421,7 @@ class SetupPage extends Component {
                             }}></i>
                         </div></div>}
                         <p>180x180</p>
-                    </div>
+                    </div> */}
                 </Segment>
 
                <Segment raised className='okok'>
@@ -439,7 +439,7 @@ class SetupPage extends Component {
                         </div></div>}
                         <p>179:52</p>
                     </div>
-                    <div className='ghhg'>
+                    {/* <div className='ghhg'>
                         <Button basic color='blue' size='small' className='btn-mgb'
                             onClick={()=>this.setState({open:true,type_media:'addlogo_2'})}
                         ><i className="fas fa-photo-video vv"></i>Add Media</Button>
@@ -452,7 +452,7 @@ class SetupPage extends Component {
                             }}></i>
                         </div></div>}
                         <p>1:1</p>
-                    </div>
+                    </div> */}
                 </Segment>
                 
                 <Segment raised className='okok'>
