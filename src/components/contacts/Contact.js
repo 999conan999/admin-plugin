@@ -34,14 +34,27 @@ class Contact extends Component {
     show_contact=(data)=>{
         let rs=[];
         data.forEach((e,i)=> {
-            console.log("🚀 ~ file: Contact.js ~ line 35 ~ Contact ~ data.forEach ~ e", e)
+            let time_his = Date.parse(e.datez);
             let order=JSON.parse(e.orderz);
-            console.log("🚀 ~ file: Contact.js ~ line 37 ~ Contact ~ data.forEach ~ order", order)
+            let time_now= new Date().getTime();
+            let time_long=Math.floor((time_now-time_his)/60000);//all phut
+            let count_day=Math.floor(time_long/1440);//
+            let count_hour=Math.floor(time_long/60)-count_day*24;//
+            let count_Minutes=time_long-count_day*24*60-count_hour*60;
+            let show_time='';
+            if(count_day>0){
+                show_time+=count_day+" ngày ";
+            }
+            if(count_hour>0){
+                show_time+=count_hour+" giờ ";
+            }
+            show_time+=count_Minutes+ " phút trước";
+
             rs.push(
                 <table  key={i} style={{width: '100%',padding:'8px',border:'solid 1px chartreuse' ,marginBottom:'18px', backgroundColor:'#efecec'}} >
                     <tbody>
                         <tr style={{backgroundColor: '#5d5a5a', padding:'3px'}}>
-                            <th style={{padding: '4px', color: 'white'}}>Tên SP<span class="date" style={{float:'left'}}><span>3 ngày 1 giờ 18 phút trước</span></span>
+                            <th style={{padding: '4px', color: 'white'}}>Tên SP<span class="date" style={{float:'left'}}><span>{show_time}</span></span>
                             <i className="xoa" style={{float:'right',marginRight: '5px',cursor: 'pointer'}}
                                 onClick={()=>this.setState({open_modal:true,id_del:Number(e.id),content_del:order.name,img_del:order.url_img,address_del:e.addressz})}
                             >Xóa</i>
@@ -53,7 +66,7 @@ class Contact extends Component {
                             <th style={{padding: '4px', color: 'white'}}>Thành tiền</th>
                         </tr>
                         <tr>
-                            <td style={{borderBottom:'solid 1px #d0c7c7'}}>
+                            <td style={{borderBottom:'solid 1px #d0c7c7'}} width='50%'>
                                 <a className='titkx'   href={order.url_sp} target='_blank' >+{order.name} <i className="fa-solid fa-arrow-up-right-from-square" style={{'fontSize':'10px'}}></i> - <b style={{color:'blue'}}>{order.attributes_kt}</b> - <b style={{color:'green'}}>{order.attributes_ms}</b></a>
                             </td>
                             <td style={{borderBottom:'solid 1px #d0c7c7'}}>
@@ -76,27 +89,13 @@ class Contact extends Component {
                                 <p style={{textAlign: 'left',marginBottom: '8px',color: 'currentColor',marginTop: '6px'}}>Tên : <b>{e.namez}</b></p>
                                 <p style={{textAlign: 'left',marginBottom: '8px',color: 'currentColor',marginTop: '6px'}}>Địa chỉ : <b>{e.addressz}</b></p>
                                 <p style={{textAlign: 'left',marginBottom: '8px',color: 'currentColor',marginTop: '6px'}}>Số điện thoại : <b>{e.phonez}</b></p>
+                                <p style={{textAlign: 'left',marginBottom: '8px',color: 'currentColor',marginTop: '6px'}}>Ghi chú : <b>{order.z_note}</b></p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             )
         })
-        // data.forEach((e,i)=> {
-        //     let dataz=JSON.parse(e.dataz);
-        //     let d=new Date(e.datez)
-        //     rs.push(
-        //         <Table.Row key={i} className='danhvt'>
-        //             <Table.Cell>{dataz.comment}</Table.Cell>
-        //             <Table.Cell>{d.toLocaleDateString()} - <span style={{color:'#03a9f4'}}>{d.toLocaleTimeString()}</span></Table.Cell>
-        //             <Table.Cell>
-        //                 <Label className='delete-css' 
-        //                     onClick={()=>this.setState({open_modal:true,id_del:Number(e.id),content_del:dataz.comment})}
-        //                 ><i className="fas fa-trash-alt"></i> {lang.DELETE}</Label>
-        //             </Table.Cell>
-        //         </Table.Row>
-        //     )
-        // });
         return rs;
     }
     //

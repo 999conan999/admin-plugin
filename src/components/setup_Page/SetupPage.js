@@ -50,7 +50,8 @@ class SetupPage extends Component {
                 website_name:'',
                 data_plugin:{
                     API_telegram:'',
-                    header_title:''
+                    header_title:'',
+                    Telegram_chat_id:''
                 }
                 // add_code_posts:{
                 //     code_header:'',
@@ -458,14 +459,31 @@ class SetupPage extends Component {
                     <Header as='h4' className='clh'>*Cài đặt plugin: </Header>
                     <div>
                         <div className='f-3'>API telegram (thông báo khi có người gửi form) :</div>
-                        <div className='f-9'>
+                        <div className='f-4'>
+                                <p>API :</p>
                                 <Input 
                                     size='small' 
                                     fluid 
+                                    placeholder='API'
                                     value={data.data_plugin.API_telegram}
                                     onChange={(e,{value})=>{
                                         let {data}=this.state;
                                         data.data_plugin.API_telegram=value;
+                                        this.setState({data:data})
+                                    }}
+                                />
+                        </div><div className='f-1'></div>
+                        <div className='f-4'>
+                                <p>Chat ID :</p>
+                                <Input 
+                                    size='small' 
+                                    placeholder='Chat ID'
+                                    fluid 
+                                    type='number'
+                                    value={data.data_plugin.Telegram_chat_id}
+                                    onChange={(e,{value})=>{
+                                        let {data}=this.state;
+                                        data.data_plugin.Telegram_chat_id=value;
                                         this.setState({data:data})
                                     }}
                                 />
