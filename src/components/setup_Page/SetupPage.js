@@ -328,7 +328,6 @@ class SetupPage extends Component {
 
     render() {
         let {data,value_category,value_page,value_custom_text,category_list,page_list}=this.state;
-
         return (
             <React.Fragment>
                 <Message  color='brown'>

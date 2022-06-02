@@ -9,18 +9,18 @@ import { ToastContainer,toast } from 'react-toastify';
 import {check_login_plugin,check_notify_plugin,action_update_data_plugin} from './lib/constants/axios';
 import Contact from './contacts/Contact';
 import SetupPage from './setup_Page/SetupPage';
-// import {
-//     BrowserRouter as Router,
-//     Routes,
-//     Route,
-//     Link,
-//     useParams
-//   } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    useParams
+  } from "react-router-dom";
 class Index extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            activeItem:"pages",
+            activeItem:"posts",
             permission_type:"null",
             notify:0,
         }
@@ -31,6 +31,7 @@ class Index extends Component {
         let permission_type='null';
         if(a.permission_type!=undefined) permission_type=a.permission_type;
         this.setState({
+           activeItem:window.location.pathname.replace('/',''),
            permission_type:permission_type,
         });
         this.check_notify_contacts()
@@ -103,34 +104,32 @@ class Index extends Component {
         // let permission_active_post=this.set_permission(["administrator","editor",'author','contributor','subscriber']);
         
         return (
-            <React.Fragment>
+            <Router>
+                
             <Menu attached='top' tabular>
 
-                {permission_active_page&&<a 
+                {permission_active_page&&<Link 
+                    to="/pages"
                     className={`link item ${activeItem=="pages"?"active":""}`}
                     onClick={()=>this.clickMenu("pages")}
-                ><i class="fa-solid fa-hand menu-icon-d"></i>{lang.PAGES}</a>}
+                ><i class="fa-solid fa-hand menu-icon-d"></i>{lang.PAGES}</Link>}
 
-                {permission_active_contact&&<a 
+                {permission_active_contact&&<Link 
+                    to="/contacts"
                     className={`link item ${activeItem=="contacts"?"active":""}`}
                     onClick={()=>this.clickMenu("contacts")}
                 ><i class="fa-brands fa-wpforms  menu-icon-d"></i>{lang.FORM_CONTACT}
                 {notify>0&& <Label color='red' floating style={{top: '0px'}}>{notify}</Label>}
-                </a>}
+                </Link>}
 
                 <Menu.Menu position='right'>
-                    {permission_active_setup&&<a 
+                    {permission_active_setup&&<Link 
+                        to="/setups"
                         className={`link item ${activeItem=="setups"?"active":""}`}
                         onClick={()=>this.clickMenu("setups")}
-                    ><i className="fa-solid fa-gears menu-icon-d"></i>{lang.SETUP_PAGE}</a>}
+                    ><i className="fa-solid fa-gears menu-icon-d"></i>{lang.SETUP_PAGE}</Link>}
                 </Menu.Menu>
             </Menu>
-            <div style={{padding:'5px'}}>
-                {activeItem=='pages'&&<PageEdit/>}
-                {activeItem=='contacts'&&<Contact/>}
-                {activeItem=='setups'&&<SetupPage/>}
-                {activeItem!='setups'&&activeItem!='contacts'&&activeItem!='pages'&&<PageEdit/>}
-            </div>
                 {/* toast */}
                 <ToastContainer
                     position="top-right"
@@ -142,10 +141,16 @@ class Index extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                />
+                    />
                 
-               
-          </React.Fragment>
+                <Routes>
+                {permission_active_contact&&<Route exact path="/contacts" element={<Contact 
+                />}/>}
+                {permission_active_page&&<Route exact path="/pages" element={<PageEdit/>}/>}
+                {( permission_active_page)&&<Route exact path="/*" element={<PageEdit/>}/>}
+                {permission_active_setup&&<Route exact path="/setups" element={<SetupPage/>}/>}
+                </Routes>
+          </Router>
         )
     }
     clear_notify_contact=()=>{
