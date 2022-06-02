@@ -81,7 +81,7 @@ class Index extends Component {
             if(notify_num>0){
                 this.setState({notify:notify_num});
                 // trong truong hop lon hon khong thi tinh toan o day, con khong thi thoi
-                if(window.location.pathname.replace('/','')=='contacts'){
+                if(this.state.activeItem=='contacts'){
                     setTimeout(async()=>{
                         await action_update_data_plugin({
                             keyz:'contact_count_plugin',
