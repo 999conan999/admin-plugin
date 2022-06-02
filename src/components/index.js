@@ -109,13 +109,13 @@ class Index extends Component {
             <Menu attached='top' tabular>
 
                 {permission_active_page&&<Link 
-                    to="/pages"
+                    to="/wp-admin/admin.php/pages"
                     className={`link item ${activeItem=="pages"?"active":""}`}
                     onClick={()=>this.clickMenu("pages")}
                 ><i class="fa-solid fa-hand menu-icon-d"></i>{lang.PAGES}</Link>}
 
                 {permission_active_contact&&<Link 
-                    to="/contacts"
+                    to="/wp-admin/admin.php/contacts"
                     className={`link item ${activeItem=="contacts"?"active":""}`}
                     onClick={()=>this.clickMenu("contacts")}
                 ><i class="fa-brands fa-wpforms  menu-icon-d"></i>{lang.FORM_CONTACT}
@@ -124,7 +124,7 @@ class Index extends Component {
 
                 <Menu.Menu position='right'>
                     {permission_active_setup&&<Link 
-                        to="/setups"
+                        to="/wp-admin/admin.php/setups"
                         className={`link item ${activeItem=="setups"?"active":""}`}
                         onClick={()=>this.clickMenu("setups")}
                     ><i className="fa-solid fa-gears menu-icon-d"></i>{lang.SETUP_PAGE}</Link>}
@@ -144,11 +144,11 @@ class Index extends Component {
                     />
                 
                 <Routes>
-                {permission_active_contact&&<Route exact path="/contacts" element={<Contact 
+                {permission_active_contact&&<Route exact path="/wp-admin/admin.php/contacts" element={<Contact 
                 />}/>}
-                {permission_active_page&&<Route exact path="/pages" element={<PageEdit/>}/>}
-                {( permission_active_page)&&<Route exact path="/*" element={<PageEdit/>}/>}
-                {permission_active_setup&&<Route exact path="/setups" element={<SetupPage/>}/>}
+                {permission_active_page&&<Route exact path="/wp-admin/admin.php/pages" element={<PageEdit/>}/>}
+                {( permission_active_page)&&<Route exact path="/wp-admin/admin.php/*" element={<PageEdit/>}/>}
+                {permission_active_setup&&<Route exact path="/wp-admin/admin.php/setups" element={<SetupPage/>}/>}
                 </Routes>
           </Router>
         )
