@@ -72,17 +72,17 @@ class Contact extends Component {
                             <td style={{borderBottom:'solid 1px #d0c7c7'}}>
                                 <img src={order.url_img} width='50px' style={{display:"block",margin:'auto'}}/>
                             </td>
-                            <td style={{textAlign:'center',borderBottom:'solid 1px #d0c7c7'}} >{order.price.format(0, 3, '.', ',')}đ</td>
+                            <td style={{textAlign:'center',borderBottom:'solid 1px #d0c7c7'}} >{Number(order.price).format(0, 3, '.', ',')}đ</td>
 
                             <td style={{textAlign:'center',borderBottom:'solid 1px #d0c7c7'}}>{order.quantity}</td>
-                            <td  style={{textAlign:'center',borderBottom:'solid 1px #d0c7c7'}}>{(order.price*order.quantity).format(0, 3, '.', ',')}đ</td>
+                            <td  style={{textAlign:'center',borderBottom:'solid 1px #d0c7c7'}}>{(Number(order.price)*Number(order.quantity)).format(0, 3, '.', ',')}đ</td>
                         </tr>
                         <tr>
                             <td  style={{borderBottom:'solid 1px #d0c7c7'}}></td>
                             <td  style={{borderBottom:'solid 1px #d0c7c7'}}></td>
                             <td  style={{borderBottom:'solid 1px #d0c7c7'}}></td>
                             <td  style={{ fontWeight: 600,borderBottom:'solid 1px #d0c7c7'}}>Tổng tiền: </td>
-                            <td style={{fontWeight: 600, color: 'blue',textAlign:'center',borderBottom:'solid 1px #d0c7c7'}}>{(order.price*order.quantity).format(0, 3, '.', ',')}đ</td>
+                            <td style={{fontWeight: 600, color: 'blue',textAlign:'center',borderBottom:'solid 1px #d0c7c7'}}>{(Number(order.price)*Number(order.quantity)).format(0, 3, '.', ',')}đ</td>
                         </tr>
                         <tr>
                             <td colspan="5"  style={{borderBottom:'solid 1px #d0c7c7'}}>

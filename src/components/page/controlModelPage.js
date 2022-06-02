@@ -432,7 +432,6 @@ class ControlModelPage extends Component {
                             this.setState({data_source:data_source})
                         }
                         else if(type=='delete_sp'){
-                            console.log('12323')
                             data_source.data_lading_page.sp.splice(i,1);
                             this.setState({data_source:data_source})
                         }
