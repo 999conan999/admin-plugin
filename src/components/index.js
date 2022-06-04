@@ -37,26 +37,26 @@ class Index extends Component {
         
     }
     // random popup infor
-    random_popup_contact=()=>{
-        let a=[1,2,3,4,5,6];
-        let random = Math.floor(Math.random() * a.length);
-        if(random==1){
-            toast(({ closeToast }) => alert_toast(),{
-                position: "top-right",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                style:{
-                    backgroundColor:"#f5e8c1",
-                    color:"black"
-                }
-            });
-        }
-        //
-    }
+    // random_popup_contact=()=>{
+    //     let a=[1,2,3,4,5,6];
+    //     let random = Math.floor(Math.random() * a.length);
+    //     if(random==1){
+    //         toast(({ closeToast }) => alert_toast(),{
+    //             position: "top-right",
+    //             autoClose: false,
+    //             hideProgressBar: false,
+    //             closeOnClick: false,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             style:{
+    //                 backgroundColor:"#f5e8c1",
+    //                 color:"black"
+    //             }
+    //         });
+    //     }
+    //     //
+    // }
     //
     clickMenu=(name)=>{
         this.setState({
