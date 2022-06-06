@@ -51,6 +51,13 @@ code {
   color: white;
   background-color: red;
 }
+.copy-css{
+  cursor: pointer;
+}
+.copy-css:hover{
+  color: white;
+  background-color: rgb(20, 126, 61);
+}
 .fgg{
   margin: 5px 0;
   font-weight: 700;

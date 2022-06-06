@@ -227,7 +227,7 @@ class FileMedia extends Component {
               />
             </div>
             </Modal.Header>
-            <Modal.Content >
+            <Modal.Content style={{maxHeight:'600px',overflowY:'scroll'}}>
               {this.show_imgs(imgs_list,multi_select)}
 
               {show_more&&<div className='wrap-more'>

@@ -488,7 +488,7 @@ show_sp=(sp,activeIndex)=>{
 //
     render() {
         const { activeIndex } =  this.state;
-        const {data_source,id_page,template_list}=this.props;
+        const {data_source,template_list}=this.props;
         // console.log("🚀 ~ file: ModalEditerPage.js ~ line 231 ~ ModalEditerPage ~ render ~ ", data_source.data_lien_he)
         
         return (<React.Fragment>
@@ -496,7 +496,7 @@ show_sp=(sp,activeIndex)=>{
                 size={"large"}
                 open={this.props.open}
             >
-                <Modal.Header className='blackw'>{id_page==-2?lang.CREATE_NEW_PAG:lang.EDIT_PAG} </Modal.Header>
+                <Modal.Header className='blackw'>{data_source.id==-1?lang.CREATE_NEW_PAG:lang.EDIT_PAG} </Modal.Header>
                 <Modal.Content className='blackw'>
                     <Segment raised className='xyg '>
                         <Header as='h3' className='clh'>*{lang.INPORTANT_POST}:</Header>
@@ -839,7 +839,7 @@ show_sp=(sp,activeIndex)=>{
                         onChange={this.action_change_status}
                     />
                     <Button negative onClick={this.click_action_no}>{lang.NO}</Button>
-                    <Button positive onClick={this.click_action_yes} >{id_page==-2?lang.ACTION_POST:lang.UPDATE}</Button>
+                    <Button positive onClick={this.click_action_yes} >{data_source.id==-1?lang.ACTION_POST:lang.UPDATE}</Button>
                 </Modal.Actions>
             </Modal>
             <FileMedia

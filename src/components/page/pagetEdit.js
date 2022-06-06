@@ -13,6 +13,7 @@ class PostEdit extends Component {
         super(props)
         this.state = {
             id_page:-1,
+            type_action:'',
             page:0,
             show_more:false,
             open:false,
@@ -78,10 +79,11 @@ class PostEdit extends Component {
             }
         })
     }
-    action_click_edit=(id)=>{
+    action_click_edit=(id,type_action)=>{
         this.setState({
             id_page:id,
-            open:true
+            open:true,
+            type_action:type_action
         })
     }
     // close modal edit
@@ -94,7 +96,8 @@ class PostEdit extends Component {
     action_click_create_page=(id)=>{
         this.setState({
             id_page:id,
-            open:true
+            open:true,
+            type_action:'create'
         })
     }
     // yes delete post
@@ -138,8 +141,9 @@ class PostEdit extends Component {
                         <Table.Cell><span className={e.status=='private'?'priva':'publ'}>{e.status}</span></Table.Cell>
                         <Table.Cell>
                         {!e.is_home&&<div>
-                                <Label className='edit-css' onClick={()=>this.action_click_edit(e.id)}><i className="fas fa-edit"></i> {lang.EDIT}</Label>
+                                <Label className='edit-css' onClick={()=>this.action_click_edit(e.id,'edit')}><i className="fas fa-edit"></i> {lang.EDIT}</Label>
                                 <Label className='delete-css' onClick={()=>this.clickDeletePost(e.id,e.title)}><i className="fas fa-trash-alt"></i> {lang.DELETE}</Label>
+                                <Label className='copy-css' onClick={()=>this.action_click_edit(e.id,'copy')}><i className="fa-solid fa-copy"></i>Sao chép</Label>
                             </div>}
                         </Table.Cell>
                     </Table.Row>
@@ -151,7 +155,7 @@ class PostEdit extends Component {
 
     //************************ */
     render() {
-        let {openModalDelete,id_page,open,data_list_page,seleted_delete,show_more} =this.state;
+        let {openModalDelete,id_page,type_action,open,data_list_page,seleted_delete,show_more} =this.state;
         return (
             <React.Fragment>
                 <Segment.Group horizontal className='assd'>
@@ -169,7 +173,7 @@ class PostEdit extends Component {
                     <Table.Row>
                         <Table.HeaderCell >{lang.TITLE}</Table.HeaderCell>
                         <Table.HeaderCell width="2">{lang.STATUS}</Table.HeaderCell>
-                        <Table.HeaderCell width="3">{lang.EDIT_DEL}</Table.HeaderCell>
+                        <Table.HeaderCell width="4">Hiệu chỉnh</Table.HeaderCell>
                     </Table.Row>
                     </Table.Header>
 
@@ -208,6 +212,7 @@ class PostEdit extends Component {
                 <ControlModelPage
                     open={open}
                     id_page={id_page}
+                    type_action={type_action}
                     close_model_edit={this.close_model_edit}
                     add_data_new_page={this.add_data_new_page}
                     add_data_update_page={this.add_data_update_page}

@@ -55,7 +55,7 @@ class ControlModelPage extends Component {
     }
     //
   async  componentWillReceiveProps(nextProps){
-        if(nextProps.id_page!==this.props.id_page){
+        if(nextProps.id_page!==this.props.id_page||nextProps.type_action!==this.props.type_action){
             if(nextProps.id_page==-2){
                 // create page
                 let data_source={
@@ -100,11 +100,13 @@ class ControlModelPage extends Component {
                 })
             }else{
                 // edit post [todo=>]
+
                 let data_server= await get_landing_page_infor_by_id(nextProps.id_page);
                 if(data_server!='null'){
                     let metaA=data_server.metaA.metaA==undefined||data_server.metaA.metaA==''?{}:JSON.parse(data_server.metaA.metaA);
+                    let id=nextProps.type_action=="copy"?-1:data_server.id;
                     let data_source={
-                        id:data_server.id,
+                        id:id,
                         template_selected:metaA.template_selected==undefined?"":metaA.template_selected,// meta
                         title_post:data_server.title_post,//
                         content_post:data_server.content_post,//
@@ -286,7 +288,7 @@ class ControlModelPage extends Component {
                     change_code_lien_he={this.change_code_lien_he} 
                     click_action_yes={this.click_action_yes} 
                     click_action_no={this.click_action_no} 
-                    id_page={this.props.id_page}
+                    id={data_source.id}
                     change_navbar={(value,type)=>{
                         let {data_source}=this.state;
                         if(type=='price_ads'){
