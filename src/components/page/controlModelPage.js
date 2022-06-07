@@ -8,7 +8,6 @@ import {
     action_create_or_edit_ladning_page,
     get_landing_page_infor_by_id
 } from '../lib/constants/axios'
-import { json } from 'simply-beautiful';
 class ControlModelPage extends Component {
     constructor (props) {
         super(props)
@@ -265,7 +264,6 @@ class ControlModelPage extends Component {
     //
     render() {
         let {data_source,template_list} =this.state;
-        console.log("🚀>>>>>>>>>", data_source.data_lading_page.sp)
         return (
             <React.Fragment>
                 <ModalEditerPage
@@ -354,7 +352,7 @@ class ControlModelPage extends Component {
                             this.setState({data_source:data_source})
                         }
                     }}
-                    change_sp={async(value,type,i,j=0)=>{
+                    change_sp={(value,type,i,j=0)=>{
 
                         let {data_source}=this.state;
                         if(type=='title_sp'){
@@ -480,19 +478,6 @@ class ControlModelPage extends Component {
                             this.setState({data_source:data_source})
                         }
                         else if(type=='add_sp'){
-                            let l=data_source.data_lading_page.sp.length;
-                            if(l>0){
-                                let gg=data_source.data_lading_page.sp[l-1];
-                                data_source.data_lading_page.sp.push({
-                                    title:gg.title,
-                                    danh_gia:gg.danh_gia,
-                                    hinh_anh:gg.hinh_anh,
-                                    thong_tin_sp:gg.thong_tin_sp,
-                                    bang_gia_sp:gg.bang_gia_sp,
-                                    thanh_toan:gg.thanh_toan
-                                });
-                                await JSON.stringify(data_source.data_lading_page)
-                            }else{
                                 data_source.data_lading_page.sp.push( {
                                     title:'',
                                     danh_gia:4.5,
@@ -501,12 +486,41 @@ class ControlModelPage extends Component {
                                     bang_gia_sp:[],
                                     thanh_toan:[]
                                 })
-                            }
                             this.setState({data_source:data_source})
                         }
 
 
                     }}
+                    // 
+                    change_position_sp={(length_sp,i,type)=>{
+                        let {data_source}=this.state;
+                        if(type=='down'){
+                            if(i<=length_sp-2){
+                                data_source.data_lading_page.sp.splice(i+1,0,data_source.data_lading_page.sp.splice(i,1)[0])
+                            }
+                        }else if(type=='up'){
+                            if(i>0){
+                                data_source.data_lading_page.sp.splice(i-1,0,data_source.data_lading_page.sp.splice(i,1)[0])
+                            }
+                        }
+
+                        this.setState({data_source:data_source})
+                    }}
+                    //
+                    change_position_hinh_anh={(length_ha,i,j,type)=>{
+                        let {data_source}=this.state;
+                        if(type=='left'){
+                            if(j>0){
+                                data_source.data_lading_page.sp[i].hinh_anh.splice(j-1,0,data_source.data_lading_page.sp[i].hinh_anh.splice(j,1)[0])
+                            }
+                        }else if(type=='right'){
+                            if(j<=length_ha-2){
+                                data_source.data_lading_page.sp[i].hinh_anh.splice(j+1,0,data_source.data_lading_page.sp[i].hinh_anh.splice(j,1)[0])
+                            }
+                        }
+                        this.setState({data_source:data_source})
+                    }} 
+                    //
                 />
             </React.Fragment>
         )

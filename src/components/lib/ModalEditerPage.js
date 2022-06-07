@@ -171,10 +171,17 @@ show_gia_tri=(gia_tri,i)=>{
 //
 show_sp=(sp,activeIndex)=>{
     let rs=[];
-    if(sp.length>0){
+    let length_sp=sp.length;
+    if(length_sp>0){
         sp.forEach((e,i) => {
+            let length_ha=e.hinh_anh.length;
             rs.push(
             <React.Fragment key={i}>
+                <div className='fghxd'>
+                <div className='uysd'>
+                    <i className="icnz fa-solid fa-circle-chevron-down" style={i>length_sp-2?{color:'rgb(233 233 233)'}:{}} onClick={()=>this.props.change_position_sp(length_sp,i,'down')}></i>
+                    <i className="icnz fa-solid fa-circle-chevron-up" style={i==0?{color:'rgb(233 233 233)'}:{}} onClick={()=>this.props.change_position_sp(length_sp,i,'up')}></i>
+                </div>
                 <Accordion.Title
                     active={activeIndex === 10+i}
                     index={10+i}
@@ -182,7 +189,9 @@ show_sp=(sp,activeIndex)=>{
                     key={i}
                     >
                     <Icon name='dropdown' />
-                        Mẫu số {i+1}
+                    
+                        Mẫu số {i+1} : <strong>{e.title}</strong>
+
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 10+i}>
                         <div className='spx'>
@@ -228,6 +237,10 @@ show_sp=(sp,activeIndex)=>{
                                                         <i className="fa-solid fa-trash-can iconz" style={{fontSize:'14px'}} 
                                                         onClick={()=>this.props.change_sp(false,'delete_img_sp',i,j)}
                                                         ></i>
+                                                        {/* <div> */}
+                                                        <span className={j==0?'inleft nozz':'inleft'}  onClick={()=>this.props.change_position_hinh_anh(length_ha,i,j,'left')}><i className="fa-solid fa-angles-left "></i></span>
+                                                        <span className={j>length_ha-2?'ỉnight nozz':'ỉnight'} onClick={()=>this.props.change_position_hinh_anh(length_ha,i,j,'right')}><i className="fa-solid fa-angles-right "></i></span>
+                                                        {/* </div> */}
                                                         <div className='brzs'>
                                                             <div style={{position:"relative"}}>
                                                                 <div className='mediaz'>
@@ -477,7 +490,7 @@ show_sp=(sp,activeIndex)=>{
 
                         </div> 
                 </Accordion.Content>
-
+                </div>
             </React.Fragment>
             )
         });

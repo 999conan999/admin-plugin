@@ -26,7 +26,7 @@ class Index extends Component {
         }
     }
    async componentDidMount(){
-        this.random_popup_contact();
+        // this.random_popup_contact();
         let a=await check_login_plugin();
         let permission_type='null';
         if(a.permission_type!=undefined) permission_type=a.permission_type;
