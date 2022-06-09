@@ -190,7 +190,7 @@ show_sp=(sp,activeIndex)=>{
                     >
                     <Icon name='dropdown' />
                     
-                        Mẫu số {i+1} : <strong>{e.title}</strong>
+                        Mẫu số {i+1} : {e.title}
 
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 10+i}>

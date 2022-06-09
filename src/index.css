@@ -788,3 +788,12 @@ code {
   border: none !important;
   color: #bbaf9f !important;
 }
+.Toastify__toast-container {
+  z-index: 999999 !important;
+}
+.ui.page.modals.dimmer.transition.visible.active {
+  z-index: 99999 !important;
+}
+.tox.tox-silver-sink.tox-tinymce-aux {
+  z-index: 99999999;
+}
