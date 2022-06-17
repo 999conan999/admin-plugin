@@ -47,7 +47,13 @@ class ControlModelPage extends Component {
                         google_map:"",
                         pic_map:''
                     },
-                    sp:[]
+                    sp:[],
+                    mr:{
+                        fb:'',
+                        zl:'',
+                        dt:'',
+                        ds:''
+                    }
                 }
             },
             id_page:-1
@@ -92,7 +98,13 @@ class ControlModelPage extends Component {
                             google_map:"",
                             pic_map:''
                         },
-                        sp:[]
+                        sp:[],
+                        mr:{
+                            fb:'',
+                            zl:'',
+                            dt:'',
+                            ds:''
+                        }
                     }
                 };
                 this.setState({
@@ -102,8 +114,12 @@ class ControlModelPage extends Component {
                 // edit post [todo=>]
 
                 let data_server= await get_landing_page_infor_by_id(nextProps.id_page);
+
                 if(data_server!='null'){
                     let metaA=data_server.metaA.metaA==undefined||data_server.metaA.metaA==''?{}:JSON.parse(data_server.metaA.metaA);
+                    if(metaA.data_lading_page!=undefined){
+                        if(metaA.data_lading_page.mr==undefined) metaA.data_lading_page.mr={fb:'',zl:'',dt:'',ds:''};
+                    }
                     let id=nextProps.type_action=="copy"?-1:data_server.id;
                     let data_source={
                         id:id,
@@ -118,7 +134,7 @@ class ControlModelPage extends Component {
                         code_body:metaA.code_body==undefined?"":metaA.code_body,// meta
                         code_footer:metaA.code_footer==undefined?"":metaA.code_footer,// meta
                         status:data_server.status,
-                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[] }:metaA.data_lading_page,
+                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[],mr:{fb:'',zl:'',dt:'',ds:''} }:metaA.data_lading_page,
                         server_render:metaA.server_render,
                         // data_lien_he:metaA.data_lien_he==undefined?[]:metaA.data_lien_he,
                         // data_redirect_code:metaA.data_redirect_code==undefined?{time:0,list_code:[]}:metaA.data_redirect_code,
@@ -521,6 +537,25 @@ class ControlModelPage extends Component {
                         this.setState({data_source:data_source})
                     }} 
                     //
+                    changeMR={(value,type)=>{
+                        if(type=='fb'){
+                            let {data_source}=this.state;
+                            data_source.data_lading_page.mr.fb=value;
+                            this.setState({data_source:data_source})
+                        }else if(type=='zl'){
+                            let {data_source}=this.state;
+                            data_source.data_lading_page.mr.zl=value;
+                            this.setState({data_source:data_source})
+                        }else if(type=='dt'){
+                            let {data_source}=this.state;
+                            data_source.data_lading_page.mr.dt=value;
+                            this.setState({data_source:data_source})
+                        }else if(type=='ds'){
+                            let {data_source}=this.state;
+                            data_source.data_lading_page.mr.ds=value;
+                            this.setState({data_source:data_source})
+                        }
+                    }}
                 />
             </React.Fragment>
         )

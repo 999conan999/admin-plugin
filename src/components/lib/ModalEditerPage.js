@@ -803,6 +803,51 @@ show_sp=(sp,activeIndex)=>{
                         </Button>
                     </Segment>
                     <Segment raised className='xyg' >
+                        <div>
+                            <Header as='h4'>Thông tin liên hệ thay thế (<span style={{color:"red"}}>nếu có</span>):</Header>
+                            <div className='f-6'>
+                                <div>Facebook(URL):</div>
+                                    <Input 
+                                        size='small' 
+                                        placeholder="Facebook URL!"
+                                        fluid 
+                                        value={data_source.data_lading_page.mr.fb}
+                                        onChange={(e,{value})=>this.props.changeMR(value,'fb')}
+                                    />
+                            </div>
+                            <div className='f-6'>
+                                <div>Zalo(URL):</div>
+                                    <Input 
+                                        size='small' 
+                                        placeholder="Zalo URL!"
+                                        fluid 
+                                        value={data_source.data_lading_page.mr.zl}
+                                        onChange={(e,{value})=>this.props.changeMR(value,'zl')}
+                                    />
+                            </div>
+                            <div className='f-6'>
+                                <div>Số điện thoại:</div>
+                                    <Input 
+                                        size='small' 
+                                        placeholder="Số điện thoại!"
+                                        fluid 
+                                        value={data_source.data_lading_page.mr.dt}
+                                        onChange={(e,{value})=>this.props.changeMR(value,'dt')}
+                                    />
+                            </div>
+                            <div className='f-6'>
+                                <div>Design by:</div>
+                                    <Input 
+                                        size='small' 
+                                        placeholder="Thiết kế bởi..."
+                                        fluid 
+                                        value={data_source.data_lading_page.mr.ds}
+                                        onChange={(e,{value})=>this.props.changeMR(value,'ds')}
+                                    />
+                            </div>
+                        </div>
+                    </Segment>
+                    <Segment raised className='xyg' >
                         <Header as='h3' className='clh'>*{lang.ADVANCED_SETING}:</Header>
                         <Segment raised className={data_source.code_header!=''?'okok':''}>
                             <Header as='h4'>Css cho trang này:</Header>
@@ -841,7 +886,7 @@ show_sp=(sp,activeIndex)=>{
                             </Form>
                         </Segment>
                     </Segment>
-                    
+
                 </Modal.Content>
                 <Modal.Actions>
                     <Dropdown options={[
