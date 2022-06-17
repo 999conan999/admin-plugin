@@ -54,7 +54,8 @@ class ControlModelPage extends Component {
                         dt:'',
                         ds:''
                     }
-                }
+                },
+                canonical:''
             },
             id_page:-1
         }
@@ -105,7 +106,8 @@ class ControlModelPage extends Component {
                             dt:'',
                             ds:''
                         }
-                    }
+                    },
+                    canonical:''
                 };
                 this.setState({
                     data_source:data_source
@@ -136,6 +138,7 @@ class ControlModelPage extends Component {
                         status:data_server.status,
                         data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[],mr:{fb:'',zl:'',dt:'',ds:''} }:metaA.data_lading_page,
                         server_render:metaA.server_render,
+                        canonical:metaA.canonical==undefined?'':metaA.canonical
                         // data_lien_he:metaA.data_lien_he==undefined?[]:metaA.data_lien_he,
                         // data_redirect_code:metaA.data_redirect_code==undefined?{time:0,list_code:[]}:metaA.data_redirect_code,
                     };
@@ -554,6 +557,10 @@ class ControlModelPage extends Component {
                             let {data_source}=this.state;
                             data_source.data_lading_page.mr.ds=value;
                             this.setState({data_source:data_source})
+                        }else if(type=='canonical'){
+                            let {data_source}=this.state;
+                            data_source.canonical=value;
+                            this.setState({data_source:data_source})
                         }
                     }}
                 />
@@ -646,8 +653,8 @@ click_action_yes=async()=>{
                 schema_seo_result:fs_convert_schema_cript(data_source.schema_seo_list),
                 data_lading_page:data_source.data_lading_page,
                 thumnail_post:data_source.thumnail_post,
-                server_render:data_source.server_render
-
+                server_render:data_source.server_render,
+                canonical:data_source.canonical
             }),
             // bien can tao meta rieng o day
         }

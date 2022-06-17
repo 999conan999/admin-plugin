@@ -845,6 +845,16 @@ show_sp=(sp,activeIndex)=>{
                                         onChange={(e,{value})=>this.props.changeMR(value,'ds')}
                                     />
                             </div>
+                            <div>
+                                <div>Link bài viết gốc (không điền thì mặc định là bài viết này):</div>
+                                    <Input 
+                                        size='small' 
+                                        placeholder="rel:canonical"
+                                        fluid 
+                                        value={data_source.canonical}
+                                        onChange={(e,{value})=>this.props.changeMR(value,'canonical')}
+                                    />
+                            </div>
                         </div>
                     </Segment>
                     <Segment raised className='xyg' >
