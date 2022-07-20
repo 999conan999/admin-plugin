@@ -26,12 +26,13 @@ class ControlModelPage extends Component {
                 code_footer:'',// meta
                 status:'publish',//
                 code_css:'',
-                server_render:'',
+                // server_render:'',
                 data_lading_page:{
                     price_ads:0,
                     title_page:'',
                     des_short_page:'',
                     narbar:{
+                        vc_1:0,
                         url_1:'',
                         url_2:'',
                         url_3:'',
@@ -78,12 +79,13 @@ class ControlModelPage extends Component {
                     code_footer:'',// meta
                     status:'private',//
                     code_css:'',
-                    server_render:'',
+                    // server_render:'',
                     data_lading_page:{
                         price_ads:0,
                         title_page:'',
                         des_short_page:'',
                         narbar:{
+                            vc_1:0,
                             url_1:'',
                             url_2:'',
                             url_3:'',
@@ -121,6 +123,7 @@ class ControlModelPage extends Component {
                     let metaA=data_server.metaA.metaA==undefined||data_server.metaA.metaA==''?{}:JSON.parse(data_server.metaA.metaA);
                     if(metaA.data_lading_page!=undefined){
                         if(metaA.data_lading_page.mr==undefined) metaA.data_lading_page.mr={fb:'',zl:'',dt:'',ds:''};
+                        if(metaA.data_lading_page.narbar.vc_1==undefined) metaA.data_lading_page.narbar.vc_1=0;
                     }
                     let id=nextProps.type_action=="copy"?-1:data_server.id;
                     let data_source={
@@ -136,8 +139,8 @@ class ControlModelPage extends Component {
                         code_body:metaA.code_body==undefined?"":metaA.code_body,// meta
                         code_footer:metaA.code_footer==undefined?"":metaA.code_footer,// meta
                         status:data_server.status,
-                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0, narbar:{ url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[],mr:{fb:'',zl:'',dt:'',ds:''} }:metaA.data_lading_page,
-                        server_render:metaA.server_render,
+                        data_lading_page:metaA.data_lading_page==undefined?{ price_ads:0,title_page:'',des_short_page:'', narbar:{vc_1:0, url_1:'', url_2:'', url_3:'', title:'', des_show:'', des_hiden:'', dia_chi:'', cac_gio:'Mở cửa cả ngày', trang_thai_hien_tai:'Đang hoạt động', ngay_thanh_lap:'', nguoi_dai_dien:'', stk:'', google_map:"", pic_map:'' }, sp:[],mr:{fb:'',zl:'',dt:'',ds:''} }:metaA.data_lading_page,
+                        // server_render:metaA.server_render,
                         canonical:metaA.canonical==undefined?'':metaA.canonical
                         // data_lien_he:metaA.data_lien_he==undefined?[]:metaA.data_lien_he,
                         // data_redirect_code:metaA.data_redirect_code==undefined?{time:0,list_code:[]}:metaA.data_redirect_code,
@@ -314,6 +317,10 @@ class ControlModelPage extends Component {
                             data_source.data_lading_page.price_ads=value;
                             this.setState({data_source:data_source})
                         }
+                        else if(type=='vc_1'){
+                            data_source.data_lading_page.narbar.vc_1=value;
+                            this.setState({data_source:data_source})
+                        }
                         else if(type=='url_1'){
                             data_source.data_lading_page.narbar.url_1=value;
                             this.setState({data_source:data_source})
@@ -382,6 +389,10 @@ class ControlModelPage extends Component {
                             data_source.data_lading_page.sp[i].danh_gia= value;
                             this.setState({data_source:data_source})
                         }
+                        else if(type=='vc_2'){
+                            data_source.data_lading_page.sp[i].vc_2= value;
+                            this.setState({data_source:data_source})
+                        }
                         else if(type=='add_img_sp'){
                             data_source.data_lading_page.sp[i].hinh_anh[j].img_url= value;
                             this.setState({data_source:data_source})
@@ -390,14 +401,14 @@ class ControlModelPage extends Component {
                             data_source.data_lading_page.sp[i].hinh_anh[j].id= value;
                             this.setState({data_source:data_source})
                         }
-                        else if(type=='price_from'){
-                            data_source.data_lading_page.sp[i].hinh_anh[j].price_from= value;
-                            this.setState({data_source:data_source})
-                        }
-                        else if(type=='price_to'){
-                            data_source.data_lading_page.sp[i].hinh_anh[j].price_to= value;
-                            this.setState({data_source:data_source})
-                        }
+                        // else if(type=='price_from'){
+                        //     data_source.data_lading_page.sp[i].hinh_anh[j].price_from= value;
+                        //     this.setState({data_source:data_source})
+                        // }
+                        // else if(type=='price_to'){
+                        //     data_source.data_lading_page.sp[i].hinh_anh[j].price_to= value;
+                        //     this.setState({data_source:data_source})
+                        // }
                         else if(type=='message'){
                             data_source.data_lading_page.sp[i].hinh_anh[j].message= value;
                             this.setState({data_source:data_source})
@@ -413,8 +424,8 @@ class ControlModelPage extends Component {
                                 data_source.data_lading_page.sp[i].hinh_anh.push({
                                     img_url:gg.img_url,
                                     id:gg.id,
-                                    price_from:gg.price_from,
-                                    price_to:gg.price_to,
+                                    // price_from:gg.price_from,
+                                    // price_to:gg.price_to,
                                     message:gg.message,
                                     product_attributes:gg.product_attributes
                                 })
@@ -422,8 +433,8 @@ class ControlModelPage extends Component {
                                 data_source.data_lading_page.sp[i].hinh_anh.push({
                                     img_url:"",
                                     id:"",
-                                    price_from:0,
-                                    price_to:0,
+                                    // price_from:0,
+                                    // price_to:0,
                                     message:'',
                                     product_attributes:''
 
@@ -492,13 +503,14 @@ class ControlModelPage extends Component {
                             data_source.data_lading_page.sp[i].thanh_toan[j]=value;
                             this.setState({data_source:data_source})
                         }
-                        else if(type=='server_render'){
-                            data_source.server_render=value;
-                            this.setState({data_source:data_source})
-                        }
+                        // else if(type=='server_render'){
+                        //     data_source.server_render=value;
+                        //     this.setState({data_source:data_source})
+                        // }
                         else if(type=='add_sp'){
                                 data_source.data_lading_page.sp.push( {
                                     title:'',
+                                    vc_2:0,
                                     danh_gia:4.5,
                                     hinh_anh:[],
                                     thong_tin_sp:[],
@@ -653,7 +665,7 @@ click_action_yes=async()=>{
                 schema_seo_result:fs_convert_schema_cript(data_source.schema_seo_list),
                 data_lading_page:data_source.data_lading_page,
                 thumnail_post:data_source.thumnail_post,
-                server_render:data_source.server_render,
+                // server_render:data_source.server_render,
                 canonical:data_source.canonical
             }),
             // bien can tao meta rieng o day
@@ -666,7 +678,7 @@ click_action_yes=async()=>{
                 title:data_source.title_post,
                 status:data_source.status,
                 url:a.url,//
-                thumnail_url:data_source.thumnail_post
+                img:data_source.thumnail_post
             });
             toast.success(lang.SUCCPOST_CREATE,{theme: "colored"})
         }else{
@@ -675,7 +687,7 @@ click_action_yes=async()=>{
                 title:data_source.title_post,
                 status:data_source.status,
                 url:a.url,//
-                thumnail_url:data_source.thumnail_post
+                img:data_source.thumnail_post
             })
             toast.success(lang.SUCC_POST_EDIT,{theme: "colored"})
         }

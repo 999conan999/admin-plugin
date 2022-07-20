@@ -12,6 +12,7 @@ class PostEdit extends Component {
     constructor (props) {
         super(props)
         this.state = {
+            checker:'',
             id_page:-1,
             type_action:'',
             page:0,
@@ -127,16 +128,31 @@ class PostEdit extends Component {
         })
     }
     // show post
-    show_page_list=(data)=>{
+    show_page_list=(data,checker)=>{
         let result=[];
         if(data.length>0){
             data.forEach((e,i) => {
                 //
+                let no_st=checker.search(e.id+',')===-1;
                 result.push(
-                    <Table.Row key={i} className='danhvt'>
+                    <Table.Row key={e.id} className={no_st?'danhvt':'danhvt bzls'}>
                         <Table.Cell>
                             <b><a href={e.url}  target="_blank">{e.title} <i className="fa-solid fa-arrow-up-right-from-square" style={{'fontSize':'10px'}}></i></a></b>
                             {e.is_home&&<i className="fa-solid fa-house hjh"></i>}
+                        </Table.Cell>
+                        <Table.Cell>
+                            <img src={e.img} style={{maxWidth:'80px',maxHight:'100px',cursor:"pointer"}}
+                                onClick={()=>{
+                                    let {checker} =this.state;
+                                    if(no_st){
+                                        checker+=e.id+',';
+                                    }else{
+                                        checker=checker.replace(e.id+',', "");
+                                    }
+
+                                    this.setState({checker:checker})
+                                }}
+                            />
                         </Table.Cell>
                         <Table.Cell><span className={e.status=='private'?'priva':'publ'}>{e.status}</span></Table.Cell>
                         <Table.Cell>
@@ -155,7 +171,7 @@ class PostEdit extends Component {
 
     //************************ */
     render() {
-        let {openModalDelete,id_page,type_action,open,data_list_page,seleted_delete,show_more} =this.state;
+        let {openModalDelete,id_page,type_action,open,data_list_page,seleted_delete,show_more,checker} =this.state;
         return (
             <React.Fragment>
                 <Segment.Group horizontal className='assd'>
@@ -172,13 +188,14 @@ class PostEdit extends Component {
                     <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell >{lang.TITLE}</Table.HeaderCell>
+                        <Table.HeaderCell >Ảnh đại diện</Table.HeaderCell>
                         <Table.HeaderCell width="2">{lang.STATUS}</Table.HeaderCell>
                         <Table.HeaderCell width="4">Hiệu chỉnh</Table.HeaderCell>
                     </Table.Row>
                     </Table.Header>
 
                     <Table.Body>
-                        {this.show_page_list(data_list_page)}
+                        {this.show_page_list(data_list_page,checker)}
                     </Table.Body>
 
                     <Table.Footer>

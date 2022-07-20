@@ -199,7 +199,7 @@ show_sp=(sp,activeIndex)=>{
  
                             <div>
                                 <div className='f-2'>
-                                    Tiêu đề sản phẩm:
+                                    *Tiêu đề sản phẩm:
                                 </div>
                                 <div className='f-8'>
                                     <Input 
@@ -211,13 +211,25 @@ show_sp=(sp,activeIndex)=>{
                             </div>
                             <div>
                                 <div className='f-2'>
-                                    Đánh giá:
+                                    *Đánh giá:
                                 </div>
                                 <div className='f-2'>
                                     <Input 
                                         placeholder={4.5} fluid  size='small' type='number'
                                         value={e.danh_gia}
                                         onChange={(e,{value})=>this.props.change_sp(value,'danh_gia',i,false)}
+                                    /> 
+                                </div>
+                            </div>
+                            <div>
+                                <div className='f-2'>
+                                    *Tiền vận chuyển thêm cho sp này:
+                                </div>
+                                <div className='f-2'>
+                                    <Input 
+                                        placeholder={4.5} fluid  size='small' type='number'
+                                        value={e.vc_2}
+                                        onChange={(e,{value})=>this.props.change_sp(value,'vc_2',i,false)}
                                     /> 
                                 </div>
                             </div>
@@ -264,7 +276,7 @@ show_sp=(sp,activeIndex)=>{
                                                                     </div>
                                                             </div>
                 
-                                                            <div>
+                                                            {/* <div>
                                                                 <div className='f-5'>Giá nhỏ nhất:</div>
                                                                     <div className='f-7'>
                                                                         <Input 
@@ -284,7 +296,7 @@ show_sp=(sp,activeIndex)=>{
                                                                             onChange={(e,{value})=>this.props.change_sp(value,'price_to',i,j)}
                                                                         /> 
                                                                     </div>
-                                                            </div>
+                                                            </div> */}
                 
                                                             <div>
                                                                 <div className='f-5'>Ghi chú:</div>
@@ -540,6 +552,18 @@ show_sp=(sp,activeIndex)=>{
                                     /> 
                                 </div>
                             </div>
+                            <div>
+                                <div className='f-2'>
+                                    1.Tiền vận chuyển :
+                                </div>
+                                <div className='f-3'>
+                                    <Input 
+                                        placeholder='Giá vận chuyển' fluid  size='small' type='number'
+                                        value={data_source.data_lading_page.narbar.vc_1}
+                                        onChange={(e,{value})=>this.props.change_navbar(value,'vc_1')}
+                                    /> 
+                                </div>
+                            </div>
                             <div style={{marginTop:'8px'}}>
                                 <div>2.Lựa chọn hình ảnh cho navbar:</div>
                                 <div className='f-4'  style={{marginTop:'8px',position:'relative'}}>
@@ -720,7 +744,7 @@ show_sp=(sp,activeIndex)=>{
                                 </Button>
                             </div>
                         </Segment>
-                        <Segment raised style={{backgroundColor:"rgb(229 149 176)"}}>
+                        {/* <Segment raised style={{backgroundColor:"rgb(229 149 176)"}}>
                             <Header as='h4'>Server render:</Header>
                             <Form>
                                 <TextArea placeholder='Code here.' 
@@ -728,7 +752,7 @@ show_sp=(sp,activeIndex)=>{
                                     onChange={(e,{value})=>this.props.change_sp(value,'server_render',false,false)}
                                 />
                             </Form>
-                        </Segment>
+                        </Segment> */}
                         <Segment raised className={data_source.content_post!=''?'okok':''}>
                             <Header as='h4'>{lang.CONTENT_POST}:</Header>
                             <Button basic color='blue' size='small' className='btn-mgb'
